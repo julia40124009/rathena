@@ -7,7 +7,6 @@
 #include "core.h"
 #include "strlib.h"
 #ifndef MINICORE
-#include "ers.h"
 #include "socket.h"
 #include "timer.h"
 #include "thread.h"
@@ -372,7 +371,6 @@ int main (int argc, char **argv)
 	db_final();
 	mempool_final();
 	rathread_final();
-	ers_final();
 #endif
 
 	malloc_final();

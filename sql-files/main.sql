@@ -1,28 +1,3 @@
---
--- Table structure for table `acc_reg_num`
---
-
-CREATE TABLE IF NOT EXISTS `acc_reg_num` (
-  `account_id` int(11) unsigned NOT NULL default '0',
-  `key` varchar(32) binary NOT NULL default '',
-  `index` int(11) unsigned NOT NULL default '0',
-  `value` int(11) NOT NULL default '0',
-  PRIMARY KEY (`account_id`,`key`,`index`),
-  KEY `account_id` (`account_id`)
-) ENGINE=MyISAM;
-
---
--- Table structure for table `acc_reg_str`
---
-
-CREATE TABLE IF NOT EXISTS `acc_reg_str` (
-  `account_id` int(11) unsigned NOT NULL default '0',
-  `key` varchar(32) binary NOT NULL default '',
-  `index` int(11) unsigned NOT NULL default '0',
-  `value` varchar(254) NOT NULL default '0',
-  PRIMARY KEY (`account_id`,`key`,`index`),
-  KEY `account_id` (`account_id`)
-) ENGINE=MyISAM;
 
 --
 -- Table structure for table `skillcooldown`
@@ -161,32 +136,6 @@ CREATE TABLE IF NOT EXISTS `char` (
 ) ENGINE=MyISAM AUTO_INCREMENT=150000; 
 
 --
--- Table structure for table `char_reg_num`
---
-
-CREATE TABLE IF NOT EXISTS `char_reg_num` (
-  `char_id` int(11) unsigned NOT NULL default '0',
-  `key` varchar(32) binary NOT NULL default '',
-  `index` int(11) unsigned NOT NULL default '0',
-  `value` int(11) NOT NULL default '0',
-  PRIMARY KEY (`char_id`,`key`,`index`),
-  KEY `char_id` (`char_id`)
-) ENGINE=MyISAM;
-
---
--- Table structure for table `char_reg_str`
---
-
-CREATE TABLE IF NOT EXISTS `char_reg_str` (
-  `char_id` int(11) unsigned NOT NULL default '0',
-  `key` varchar(32) binary NOT NULL default '',
-  `index` int(11) unsigned NOT NULL default '0',
-  `value` varchar(254) NOT NULL default '0',
-  PRIMARY KEY (`char_id`,`key`,`index`),
-  KEY `char_id` (`char_id`)
-) ENGINE=MyISAM;
-
---
 -- Table structure for table `charlog`
 --
 
@@ -256,28 +205,16 @@ CREATE TABLE IF NOT EXISTS `hotkey` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `global_acc_reg_num`
+-- Table structure for table `global_reg_value`
 --
 
-CREATE TABLE IF NOT EXISTS `global_acc_reg_num` (
+CREATE TABLE IF NOT EXISTS `global_reg_value` (
+  `char_id` int(11) unsigned NOT NULL default '0',
+  `str` varchar(255) NOT NULL default '',
+  `value` varchar(255) NOT NULL default '0',
+  `type` tinyint(1) NOT NULL default '3',
   `account_id` int(11) unsigned NOT NULL default '0',
-  `key` varchar(32) binary NOT NULL default '',
-  `index` int(11) unsigned NOT NULL default '0',
-  `value` int(11) NOT NULL default '0',
-  PRIMARY KEY (`account_id`,`key`,`index`),
-  KEY `account_id` (`account_id`)
-) ENGINE=MyISAM;
-
---
--- Table structure for table `global_acc_reg_str`
---
-
-CREATE TABLE IF NOT EXISTS `global_acc_reg_str` (
-  `account_id` int(11) unsigned NOT NULL default '0',
-  `key` varchar(32) binary NOT NULL default '',
-  `index` int(11) unsigned NOT NULL default '0',
-  `value` varchar(254) NOT NULL default '0',
-  PRIMARY KEY (`account_id`,`key`,`index`),
+  PRIMARY KEY  (`char_id`,`str`,`account_id`),
   KEY `account_id` (`account_id`)
 ) ENGINE=MyISAM;
 
@@ -543,10 +480,11 @@ INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `mapreg` (
-  `varname` varchar(32) binary NOT NULL,
+  `varname` varchar(32) NOT NULL,
   `index` int(11) unsigned NOT NULL default '0',
   `value` varchar(255) NOT NULL,
-  PRIMARY KEY (`varname`,`index`)
+  KEY `varname` (`varname`),
+  KEY `index` (`index`)
 ) ENGINE=MyISAM;
 
 --

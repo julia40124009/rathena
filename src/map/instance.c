@@ -278,8 +278,7 @@ int instance_create(int party_id, const char *name)
 	instance_data[i].keep_timer = INVALID_TIMER;
 	instance_data[i].idle_limit = 0;
 	instance_data[i].idle_timer = INVALID_TIMER;
-	instance_data[i].regs.vars = i64db_alloc(DB_OPT_RELEASE_DATA);
-	instance_data[i].regs.arrays = NULL;
+	instance_data[i].vars = idb_alloc(DB_OPT_RELEASE_DATA);
 	memset(instance_data[i].map, 0, sizeof(instance_data[i].map));
 
 	p->instance_id = i;
@@ -460,13 +459,10 @@ int instance_destroy(short instance_id)
 			clif_instance_changewait( party_getavailablesd( p ), 0xffff, 1 );
 	}
 
-	if( im->regs.vars ) {
-		db_destroy(im->regs.vars);
-		im->regs.vars = NULL;
+	if( im->vars ) {
+		db_destroy(im->vars);
+		im->vars = NULL;
 	}
-
-	if( im->regs.arrays )
-		instance_data[instance_id].regs.arrays->destroy(instance_data[instance_id].regs.arrays, script_free_array_db);
 
 	ShowInfo("[Instance] Destroyed %d.\n", instance_id);
 
